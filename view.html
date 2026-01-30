@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>View Location</title>
+</head>
+<body>
+
+<h2>📍 Location Received</h2>
+<div id="info"></div>
+
+<script>
+var params = new URLSearchParams(window.location.search);
+var lat = params.get("lat");
+var lon = params.get("lon");
+
+if (lat && lon) {
+  document.getElementById("info").innerHTML =
+    "Latitude: " + lat +
+    "<br>Longitude: " + lon +
+    "<br><br><a target='_blank' href='https://www.google.com/maps?q=" +
+    lat + "," + lon + "'>Open in Google Maps</a>";
+} else {
+  document.getElementById("info").innerHTML =
+    "No data received";
+}
+</script>
+
+</body>
+</html>
