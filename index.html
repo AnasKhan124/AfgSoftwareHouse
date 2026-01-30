@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Get Location</title>
+</head>
+<body>
+  <h2>مهرباني وکړئ لوکیشن اجازه ورکړئ</h2>
+  <button onclick="getLocation()">Share Location</button>
+
+  <p id="output"></p>
+
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function(position) {
+            let lat = position.coords.latitude;
+            let lon = position.coords.longitude;
+
+            document.getElementById("output").innerHTML =
+              "Latitude: " + lat + "<br>Longitude: " + lon +
+              "<br><a target='_blank' href='https://www.google.com/maps?q=" +
+              lat + "," + lon + "'>View on Google Maps</a>";
+          },
+          function() {
+            alert("لوکیشن اجازه ورنکړل شوه");
+          }
+        );
+      } else {
+        alert("ستاسو براوزر لوکیشن نه ملاتړ کوي");
+      }
+    }
+  </script>
+</body>
+</html>
